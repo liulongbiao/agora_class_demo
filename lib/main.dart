@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'page/page_home.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.teal,
       ),
-      home: MyHomePage(title: 'Agora Class Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
