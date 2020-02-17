@@ -56,6 +56,9 @@ class _PageClassroomState extends State<PageClassroom> {
     await AgoraRtcEngine.create(AGORA_APPID);
     _initHandlers();
 
+    AgoraRtcEngine.setChannelProfile(ChannelProfile.LiveBroadcasting);
+    AgoraRtcEngine.setClientRole(ClientRole.Broadcaster);
+
     VideoEncoderConfiguration config = new VideoEncoderConfiguration();
     config.dimensions = Size(720, 960);
     config.frameRate = 15;
@@ -68,9 +71,10 @@ class _PageClassroomState extends State<PageClassroom> {
         AudioProfile.MusicStandardStereo, AudioScenario.GameStreaming);
     AgoraRtcEngine.enableWebSdkInteroperability(true);
     AgoraRtcEngine.setParameters(
-        '{\"che.video.lowBitRateStreamParameter\":{\"width\":120,\"height\":160,\"frameRate\":15,\"bitRate\":45}}');
+        '{\"che.video.lowBitRateStreamParameter\":{\"width\":90,\"height\":120,\"frameRate\":15,\"bitRate\":30}}');
     AgoraRtcEngine.enableDualStreamMode(true);
     AgoraRtcEngine.setRemoteDefaultVideoStreamType(1);
+    AgoraRtcEngine.setParameters('{"che.audio.live_for_comm":true}');
 
     Future.delayed(Duration(seconds: 2), () {
       AgoraRtcEngine.joinChannel(null, 'classroom', null, 0);
